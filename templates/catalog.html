@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>Каталог</h1>
+    <p>Оберіть аксесуар для свого смартфона.</p>
+</section>
+<section class="product-grid section">
+    {% for product in products %}
+        {% include "product_card.html" %}
+    {% empty %}
+        <p>Поки немає товарів. Додайте їх через адмін-панель.</p>
+    {% endfor %}
+</section>
+{% endblock %}

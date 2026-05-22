@@ -1,0 +1,16 @@
+<article class="product-card">
+    <a href="{{ product.get_absolute_url }}">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <div class="placeholder">Фото</div>
+        {% endif %}
+        <h3>{{ product.name }}</h3>
+    </a>
+    <p>{{ product.category.name }}</p>
+    <strong>{{ product.price }} грн</strong>
+    <form method="post" action="{% url 'add_to_cart' product.id %}">
+        {% csrf_token %}
+        <button class="button small" type="submit">Купити</button>
+    </form>
+</article>

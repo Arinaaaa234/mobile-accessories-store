@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>Контакти</h1>
+    <p>Зв'яжіться з нами для консультації щодо аксесуарів.</p>
+</section>
+<section class="section text-page">
+    <p>Телефон: +380 67 000 00 00</p>
+    <p>Email: hello@mobilestore.local</p>
+    <p>Адреса: Київ, Україна</p>
+    <a href="{% url 'home' %}">На головну</a>
+</section>
+{% endblock %}

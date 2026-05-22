@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Mobile Store - головна{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">Інтернет-магазин аксесуарів</p>
+        <h1>Все потрібне для вашого смартфона</h1>
+        <p>Підберіть чохол, зарядний пристрій, навушники, павербанк або захисне скло для щоденного користування.</p>
+        <a class="button" href="{% url 'catalog' %}">Перейти в каталог</a>
+    </div>
+</section>
+<section class="section">
+    <div class="section-title">
+        <h2>Популярні товари</h2>
+        <a href="{% url 'catalog' %}">Усі товари</a>
+    </div>
+    <div class="product-grid">
+        {% for product in popular_products %}
+            {% include "product_card.html" %}
+        {% empty %}
+            <p>Популярні товари можна додати через адмін-панель.</p>
+        {% endfor %}
+    </div>
+</section>
+<section class="section">
+    <div class="section-title">
+        <h2>Акційні пропозиції</h2>
+    </div>
+    <div class="product-grid">
+        {% for product in sale_products %}
+            {% include "product_card.html" %}
+        {% empty %}
+            <p>Акційні товари можна позначити в адмін-панелі.</p>
+        {% endfor %}
+    </div>
+</section>
+<section class="section subscribe">
+    <h2>Розсилка новинок</h2>
+    <form method="post" class="form compact-form">
+        {% csrf_token %}
+        {{ newsletter_form.as_p }}
+        <button class="button" type="submit">Підписатись</button>
+    </form>
+</section>
+{% endblock %}

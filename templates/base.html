@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Mobile Store{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'home' %}">Mobile Store</a>
+        <nav class="nav">
+            <a href="{% url 'catalog' %}">Каталог</a>
+            {% for category in menu_categories %}
+                <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            {% endfor %}
+            <a href="{% url 'about' %}">Про нас</a>
+            <a href="{% url 'contacts' %}">Контакти</a>
+            <a href="{% url 'cart_detail' %}">Кошик ({{ cart_count }})</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}">Кабінет</a>
+                <a href="{% url 'logout' %}">Вийти</a>
+            {% else %}
+                <a href="{% url 'login' %}">Увійти</a>
+                <a href="{% url 'register' %}">Зареєструватись</a>
+            {% endif %}
+        </nav>
+    </header>
+    {% if messages %}
+        <section class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </section>
+    {% endif %}
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+        <div>
+            <strong>Mobile Store</strong>
+            <p>Аксесуари для смартфонів: чохли, зарядки, навушники, павербанки та захисне скло.</p>
+        </div>
+        <div>
+            <p>Телефон: +380 67 000 00 00</p>
+            <p>Email: hello@mobilestore.local</p>
+        </div>
+    </footer>
+</body>
+</html>
