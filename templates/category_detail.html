@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>{{ category.name }}</h1>
+    <p>{{ category.description }}</p>
+</section>
+<section class="product-grid section">
+    {% for product in products %}
+        {% include "product_card.html" %}
+    {% empty %}
+        <p>У цій категорії поки немає товарів.</p>
+    {% endfor %}
+</section>
+{% endblock %}
